@@ -233,6 +233,7 @@ export default function ProfilePage() {
             >
               {userAuctions.map((auction) => (
                 <Card
+                  imageUrl=""
                   key={auction.id}
                   title={auction.title}
                   id={auction.id}
