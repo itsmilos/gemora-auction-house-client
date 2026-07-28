@@ -1,32 +1,51 @@
-# React + TypeScript + Vite
+🏛️ Auction House — Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The frontend for a vintage auction platform — browse, bid in real time, and manage your own listings. Talks to a separate Express API, no server-side rendering here.
 
-Currently, two official plugins are available:
+📦 Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+React 19 (Vite)
+TypeScript
+Tailwind CSS v4
+React Router
+Socket.io-client
+Axios
 
-## React Compiler
+✨ Quick start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+bash
+npm install
+npm run dev
 
-## Expanding the Oxlint configuration
+You'll need a .env with VITE_API_URL pointing at the backend (local or deployed).
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+🗂️ What it does
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+Browse & filter — category, price range, and sort, all synced with the URL so results are shareable
+Auction detail — live countdown, bid history, and real-time price updates the moment someone else bids
+Bidding — modal-based bid flow, guarded behind login
+Create & manage listings — full form for new auctions (with image upload), edit/delete for your own — locked once bidding starts
+Profile — see your own auctions and every bid you've placed, with a quick "winning or outbid" indicator
+Auth — persistent login via Context + localStorage, protected routes for anything that needs you signed in
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+🎨 Look & feel
+
+Dark, minimal hero up top; clean, light-toned pages for everything else. Geist for text, Geist Mono for prices, timers, and anything numeric.
+
+🤖 How it works
+
+An AuthContext holds the token and user, restores itself from localStorage on load, and keeps Axios's default headers in sync so every request is authenticated automatically — no per-request wiring needed. The auction detail page opens a Socket.io connection, joins a room scoped to that specific auction, and listens for new-bid events to update the price and bid list live, without a refresh. Filters, search, and sort all live in component state (with the homepage search bar deep-linking into the auctions page via a URL query param), and a single effect re-fetches whenever any of them change.
+
+📁 Project structure
+
+src/
+  pages/                  # Route-level components (Home, Auctions, AuctionDetail, Profile, auth forms)
+  components/              # Reusable UI (Card, Navbar, BidModal, DeleteConfirmModal, Countdown, BidListItem)
+  context/                  # AuthContext
+  lib/                       # Axios instance
+  socket/                    # Socket.io client setup
+  router/                     # Route definitions
+
+👤 Author
+
+Milos Lazendic — github.com/itsmilos
