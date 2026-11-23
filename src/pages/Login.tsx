@@ -32,16 +32,14 @@ export default function Login() {
       login(token);
       navigate("/");
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        setError(
-          error.response.data.message || "Login failed. Please try again.",
-        );
-      } else {
-        setError("Something went wrong. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+  if (axios.isAxiosError(error) && error.response) {
+    setError("Email or password is incorrect. Please try again.");
+  } else {
+    setError("Unable to connect to the server. Please try again.");
+  }
+} finally {
+  setIsLoading(false);
+}
   }
 
   return (

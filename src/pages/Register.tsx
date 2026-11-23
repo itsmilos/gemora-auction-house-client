@@ -35,17 +35,19 @@ export default function Register() {
 
       login(token);
       navigate("/");
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        setError(
-          error.response.data.message || "Register failed. Please try again.",
-        );
-      } else {
-        setError("Something went wrong. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
+    }  catch (error) {
+  if (axios.isAxiosError(error)) {
+    if (!error.response) {
+      setError("Unable to connect to the server. Please try again.");
+    } else if (error.response.status === 409) {
+      setError("Email is already in use. Please try a different email.");
+    } else {
+      setError("Something went wrong. Please try again.");
     }
+  } else {
+    setError("Something went wrong. Please try again.");
+  }
+}
   }
 
   return (
