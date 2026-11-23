@@ -198,35 +198,52 @@ export default function AuctionsPage() {
     );
   }
 
-  if (error) {
+  
+if (error) {
     return (
-      <div
-        className="
-            min-h-screen
-            flex
-            items-center
-            justify-center
-        "
-      >
-        <div
-          className="
-                bg-white
-                border
-                border-red-200
-                rounded-3xl
-                p-10
-                text-center
-            "
-        >
-          <h2 className="text-2xl font-bold text-red-500">
-            Something went wrong
-          </h2>
+        <div className="min-h-screen flex items-center justify-center px-6 py-16">
+            <div className="w-full max-w-lg rounded-3xl border border-neutral-200 bg-neutral-50 px-6 py-14 text-center">
 
-          <p className="text-neutral-500 mt-2">{error}</p>
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 text-neutral-950">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                        <path d="M10.3 3.9 2.6 17.2A2 2 0 0 0 4.3 20h15.4a2 2 0 0 0 1.7-2.8L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+                    </svg>
+                </div>
+
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-950">
+                    Something went wrong
+                </h2>
+
+                <p className="mt-4 text-sm md:text-base leading-relaxed text-neutral-400">
+                    We couldn't load the auctions right now.
+                    Please try again in a moment.
+                </p>
+
+                <button
+                    onClick={() => window.location.reload()}
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-colors hover:bg-yellow-300"
+                >
+                    Try again
+                    <span>→</span>
+                </button>
+
+            </div>
         </div>
-      </div>
     );
-  }
+}
+
 
   return (
     <div className="min-h-screen py-10">

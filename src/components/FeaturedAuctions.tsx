@@ -117,17 +117,56 @@ export default function FeaturedAuctions() {
     }
 
 
-    if (error) {
-        return (
-            <div className="
-                py-10
-                text-center
-                text-red-500
-            ">
-                {error}
+
+
+if (featuredAuctions.length === 0) {
+    return (
+        <div className="py-12 px-6 md:px-24 md:mx-20">
+
+            <div className="flex justify-center items-center mb-8">
+                <SectionBadge text="Featured Auctions" />
             </div>
-        );
-    }
+
+            <div className="rounded-3xl border border-neutral-200 bg-neutral-50 px-6 py-16 md:py-20 text-center">
+
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 text-neutral-950 mb-6">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M14.5 5.5 18.5 9.5" />
+                        <path d="m11 9 4 4" />
+                        <path d="m8 12 4 4" />
+                        <path d="m5.5 14.5 4 4" />
+                        <path d="m16 3 5 5" />
+                        <path d="m3 21 8-8" />
+                        <path d="M14 21h7" />
+                    </svg>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-950">
+                    No auctions available yet
+                </h3>
+
+                <p className="mx-auto mt-4 max-w-md text-sm md:text-base leading-relaxed text-neutral-400">
+                    There are currently no featured items to discover.
+                    New treasures might appear soon, so stay tuned!
+                </p>
+
+               
+
+            </div>
+        </div>
+    );
+}
+
 
 
     return (
