@@ -119,7 +119,7 @@ export default function FeaturedAuctions() {
 
 
 
-if (featuredAuctions.length === 0) {
+if (featuredAuctions.length === 0 && error) {
     return (
         <div className="py-12 px-6 md:px-24 md:mx-20">
 
