@@ -231,14 +231,7 @@ if (error) {
                     Please try again in a moment.
                 </p>
 
-                <button
-                    onClick={() => window.location.reload()}
-                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-colors hover:bg-yellow-300"
-                >
-                    Try again
-                    <span>→</span>
-                </button>
-
+             
             </div>
         </div>
     );
